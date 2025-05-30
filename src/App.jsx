@@ -9,15 +9,13 @@ export default function App() {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    axios
-      .post(apiUrl, formDatas)
-      .then((response) => {
-        const { author, title, body } = response.data;
-        console.log(response.data);
-      })
-      .catch((error) => {
-        console.error("Errore nel recupero dati:", error);
-      });
+    axios.post(apiUrl, formDatas).then((response) => {
+      const { author, title, body } = response.data;
+      console.log(response.data);
+      author && title && body
+        ? alert("dati inviati correttamente")
+        : alert("errore nell'invio dei dati");
+    });
   };
   const handleInputChange = (e) => {
     setFormDatas({ ...formDatas, [e.target.name]: e.target.value });
